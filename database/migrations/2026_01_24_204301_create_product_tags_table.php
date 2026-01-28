@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 
-            $table->uuid('tag_id');
+            $table->integer('tag_id');
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
         });
     }

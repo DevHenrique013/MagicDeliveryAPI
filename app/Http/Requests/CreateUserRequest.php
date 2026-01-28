@@ -22,9 +22,10 @@ class CreateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required','string'],
-            'email' => ['required','email'],
-            'password' => ['required','string'],
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'string'],
+            'balance' => ['sometimes', 'integer', 'min:0'],
         ];
     }
 
@@ -35,6 +36,8 @@ class CreateUserRequest extends FormRequest
             'email.required' => 'O e-mail é obrigatório',
             'email.email' => 'E-mail inválido',
             'password.required' => 'A senha é obrigatória',
+            'balance.integer' => 'O saldo precisa ser um número inteiro',
+            'balance.min' => 'O saldo não pode ser negativo',
         ];
     }
 }
