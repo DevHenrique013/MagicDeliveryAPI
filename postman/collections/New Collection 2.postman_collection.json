@@ -1,0 +1,500 @@
+{
+  "info": {
+    "_postman_id": "131a44c0-4cd2-4e61-b628-61481d50ca09",
+    "name": "MagicDeliveryAPIV1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 - Public",
+      "item": [
+        {
+          "name": "Auth",
+          "item": [
+            {
+              "name": "login",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "3980d26d-9feb-41a4-9c85-e7fdca4cc775",
+                    "exec": [
+                      "pm.environment.set(\"token\", pm.response.json().token);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "3e5eeabf-eeb7-4aee-8935-16910e0c060d",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "id": "44a01da8-7f28-4f9a-a672-a29868266bd9",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text",
+                    "uuid": "d8091a90-04ef-403c-a0cb-0b42f7a925ef"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text",
+                    "uuid": "5ad48d56-71a9-4119-a06c-3672f48afada"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"{{mockUserEmail}}\",\r\n    \"password\": \"{{mockUserPassword}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BaseUrl}}/auth/login",
+                  "host": [
+                    "{{BaseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "11d8185b-5ed7-4183-aea1-c444a240da11"
+        },
+        {
+          "name": "User",
+          "item": [
+            {
+              "name": "listUsers",
+              "id": "d7196b61-7e50-4330-a677-170bab522c2c",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text",
+                    "uuid": "a2545080-24c6-42df-9927-9b706ecc3668"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text",
+                    "uuid": "2ee32d90-15b5-4677-a6db-fe32a062cb7b"
+                  }
+                ],
+                "url": {
+                  "raw": "{{BaseUrl}}/users",
+                  "host": [
+                    "{{BaseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "createUser",
+              "id": "55766828-57d6-4812-84fc-be969004b7a0",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text",
+                    "uuid": "e9b50e46-456b-45e2-ac7e-e12724c53fc3"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text",
+                    "uuid": "1c0792f5-5c4a-4a65-a812-8152baab4961"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"user\",\r\n    \"email\":\"{{mockUserEmail}}\",\r\n    \"password\" : \"{{mockUserPassword}}\",\r\n    \"balance\": 1500\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BaseUrl}}/users",
+                  "host": [
+                    "{{BaseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "5613504c-074e-4b79-9606-c72c01c2ce58"
+        },
+        {
+          "name": "Tag",
+          "item": [],
+          "id": "c0c01aef-0ddf-402e-8068-5cd3be658adc"
+        },
+        {
+          "name": "Owner",
+          "item": [],
+          "id": "3a8734b8-956a-4a63-945e-7ea80c104e4b"
+        },
+        {
+          "name": "Product",
+          "item": [],
+          "id": "7a5ad9d4-b4db-4611-9cd8-ea362a6ec495"
+        },
+        {
+          "name": "Order",
+          "item": [],
+          "id": "ee9c852d-3769-4b68-bc37-4822dc799738"
+        }
+      ],
+      "id": "1b951c0c-24a9-4360-9ccf-9d18edda583c"
+    },
+    {
+      "name": "02 - Protected",
+      "item": [
+        {
+          "name": "Auth",
+          "item": [
+            {
+              "name": "logout",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "c4a9d106-c0c2-4747-b111-1a1f45500c0b",
+                    "exec": [
+                      "if (pm.response.code >= 200 && pm.response.code < 300) {\r",
+                      "  pm.environment.unset(\"token\");\r",
+                      "  console.log(\"✅ Logout OK: token removido do Environment.\");\r",
+                      "} else {\r",
+                      "  console.log(\"⚠️ Logout falhou, token mantido. Status:\", pm.response.code);\r",
+                      "}\r",
+                      "\r",
+                      "\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "7c4931dd-eafb-4b9e-8a48-308bdd10db16",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "id": "5d3f2c1d-9470-4aa0-9309-565b40b1a57c",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text",
+                    "uuid": "9c884c24-f10c-4f8a-8cbf-13d691f5a07f"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text",
+                    "uuid": "037ec926-bde8-4c17-923c-da73ef7ea810"
+                  }
+                ],
+                "url": {
+                  "raw": "{{BaseUrl}}/auth/logout",
+                  "host": [
+                    "{{BaseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "logout"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "getUser",
+              "id": "2f7a2636-cd92-40ab-86c1-2928f521b55d",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BaseUrl}}/auth/me",
+                  "host": [
+                    "{{BaseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "9efcbf47-4208-4db8-8608-e36864db1fdd"
+        },
+        {
+          "name": "User",
+          "item": [
+            {
+              "name": "increseUserBalance",
+              "id": "eb1b001d-3c3d-4076-bcb4-7d32f776dd70",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"amount\": 1500\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BaseUrl}}/users/balance/increase",
+                  "host": [
+                    "{{BaseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "balance",
+                    "increase"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "decreseUserBalance",
+              "id": "b21d3b63-bf04-4319-a9b4-0ace688d6222",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"amount\": 1500\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BaseUrl}}/users/balance/decrease",
+                  "host": [
+                    "{{BaseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "balance",
+                    "decrease"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "f581ed94-0db4-48a8-8b8a-98a81181b282"
+        },
+        {
+          "name": "Tag",
+          "item": [],
+          "id": "83bcc6a8-6371-4757-95fa-1a457c802b8a"
+        },
+        {
+          "name": "Owner",
+          "item": [],
+          "id": "4e644fa2-438e-4afe-be21-28ab598fae62"
+        },
+        {
+          "name": "Product",
+          "item": [],
+          "id": "4721f36a-898f-4619-aefb-a7581988e0a9"
+        },
+        {
+          "name": "Order",
+          "item": [],
+          "id": "1453f5d5-dae5-40bf-aa77-9244553678bb"
+        }
+      ],
+      "id": "2c82d86e-05ee-445d-ad74-ae6c4fb71b2f",
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "e66933f4-ca62-4834-b8e9-2d5cf4536f7e",
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              "const baseUrl = pm.environment.get(\"BaseUrl\");\r",
+              "const email = pm.environment.get(\"mockUserEmail\");\r",
+              "const password = pm.environment.get(\"mockUserPassword\");\r",
+              "\r",
+              "const requestName = pm.info.requestName.toLowerCase();\r",
+              "if(requestName.includes(\"login\")){\r",
+              "    return;\r",
+              "}\r",
+              "\r",
+              "const existingToken = pm.environment.get(\"token\");\r",
+              "if (existingToken) {\r",
+              "  console.log(\"Token já existe, pulando auto-login.\");\r",
+              "  return;\r",
+              "}\r",
+              "\r",
+              "if (!baseUrl || !email || !password) {\r",
+              "  throw new Error(\"Faltou BaseUrl/mockUserEmail/mockUserPassword no Environment.\");\r",
+              "}\r",
+              "\r",
+              "const loginPath = \"/auth/login\";\r",
+              "const loginUrl = baseUrl.replace(/\\/$/, \"\") + loginPath;\r",
+              "\r",
+              "\r",
+              "pm.sendRequest(\r",
+              "  {\r",
+              "    url: loginUrl,\r",
+              "    method: \"POST\",\r",
+              "    header: {\r",
+              "      \"Content-Type\": \"application/json\",\r",
+              "      \"Accept\": \"application/json\",\r",
+              "    },\r",
+              "    body: {\r",
+              "      mode: \"raw\",\r",
+              "      raw: JSON.stringify({ email, password }),\r",
+              "    },\r",
+              "  },\r",
+              "  function (err, res) {\r",
+              "    if (err) {\r",
+              "      console.log(\"Erro no login:\", err);\r",
+              "      return;\r",
+              "    }\r",
+              "\r",
+              "    if (res.code < 200 || res.code >= 300) {\r",
+              "      console.log(\"Login falhou. Status:\", res.code, \"Body:\", res.text());\r",
+              "      return;\r",
+              "    }\r",
+              "    const json = res.json();\r",
+              "\r",
+              "    const token = json.token;\r",
+              "\r",
+              "    if (!token) {\r",
+              "      console.log(\"JSON login:\", json);\r",
+              "      throw new Error(\"Não encontrei token no JSON do login.\");\r",
+              "    }\r",
+              "\r",
+              "    pm.environment.set(\"token\", token);\r",
+              "    console.log(\"✅ Token salvo no Environment.\");\r",
+              "  }\r",
+              ");\r",
+              "\r",
+              "const getUserUrl = baseUrl.replace(/\\/$/, \"\") + \"/auth/me\";\r",
+              "\r",
+              "pm.sendRequest(\r",
+              "  {\r",
+              "    url: getUserUrl,\r",
+              "    method: \"GET\",\r",
+              "    header: {\r",
+              "      \"Content-Type\": \"application/json\",\r",
+              "      \"Accept\": \"application/json\",\r",
+              "    }\r",
+              "  },\r",
+              "  function (err, res) {\r",
+              "    if (err) {\r",
+              "      console.log(\"Erro no login:\", err);\r",
+              "      return;\r",
+              "    }\r",
+              "    if (res.code < 200 || res.code >= 300) {\r",
+              "      console.log(\"Endpoint /me falhou. Status:\", res.code, \"Body:\", res.text());\r",
+              "      return;\r",
+              "    }\r",
+              "    const json = res.json();\r",
+              "    const userId = json.user.id;\r",
+              "    pm.environment.set(\"mockUserId\", userId);\r",
+              "    console.log(\"✅ UserId salvo no Environment.\");\r",
+              "});\r",
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "de4a044d-e54c-48a8-90b2-6bcb80c685ee",
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
